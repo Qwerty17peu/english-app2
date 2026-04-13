@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Английский 3 класс</title>
+  <meta name="theme-color" content="#10b981" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #ecfdf5 0%, #fefce8 100%);
+      color: #0f172a;
+    }
+    .app {
+      max-width: 430px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 14px 12px 28px;
+    }
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      margin-bottom: 14px;
+    }
+    .soft {
+      background: linear-gradient(90deg, #ede9fe 0%, #d1fae5 100%);
+    }
+    .title { font-size: 30px; font-weight: 800; line-height: 1.1; margin: 0; }
+    .subtitle { color: #475569; font-size: 16px; line-height: 1.35; margin-top: 8px; }
+    .muted { color: #64748b; font-size: 14px; }
+    .row { display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    .pill {
+      display: inline-block;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      color: #065f46;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .input {
+      width: 100%;
+      height: 48px;
+      border: 1px solid #dbeafe;
+      border-radius: 18px;
+      padding: 0 14px;
+      font-size: 16px;
+      outline: none;
+    }
+    .button {
+      border: none;
+      border-radius: 18px;
+      height: 48px;
+      padding: 0 16px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #10b981;
+      color: white;
+    }
+    .button.secondary {
+      background: white;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+    }
+    .button.ghost {
+      background: transparent;
+      color: #0f172a;
+      border: 1px solid #e2e8f0;
+    }
+    .button.small {
+      height: 44px;
+      font-size: 15px;
+    }
+    .lesson-card, .item-card {
+      background: white;
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+      margin-bottom: 12px;
+    }
+    .item-card.soft-green { background: #ecfdf5; }
+    .item-card.soft-gray { background: #f8fafc; }
+    .item-title { font-size: 22px; font-weight: 800; margin: 0 0 4px; }
+    .item-sub { font-size: 16px; color: #475569; margin: 0; }
+    .tiny { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+    .progress {
+      height: 12px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .progress > div {
+      height: 100%;
+      background: #10b981;
+      width: 0;
+      transition: width .2s ease;
+    }
+    .answer {
+      width: 100%;
+      min-height: 92px;
+      border: 1px solid #cbd5e1;
+      border-radius: 18px;
+      padding: 12px 14px;
+      font-size: 16px;
+      resize: vertical;
+    }
+    .feedback {
+      border-radius: 18px;
+      padding: 14px;
+      font-size: 16px;
+      line-height: 1.35;
+      margin-top: 10px;
+    }
+    .ok { background: #ecfdf5; color: #166534; }
+    .warn { background: #fffbeb; color: #92400e; }
+    .center { text-align: center; }
+    .big-emoji { font-size: 40px; }
+    .footer-note {
+      color: #64748b;
+      font-size: 13px;
+      text-align: center;
+      padding: 10px 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="app"></div>
+
+  <script>
+    const tutorPrompts = [
+      { id: 1, title: "Знакомство", teacher: "Hello! What is your name?", hint: "Ответь: My name is ...", goodAnswers: ["my name is", "i am"], praise: "Отлично! Так знакомятся на английском." },
+      { id: 2, title: "Игрушки", teacher: "What's this?", hint: "Ответь: It's a teddy bear. или It's a toy.", goodAnswers: ["it's a", "it is a"], praise: "Молодец! Ты правильно ответил на вопрос про предмет." },
+      { id: 3, title: "Умения", teacher: "Can you swim?", hint: "Ответь: Yes, I can. или No, I can't.", goodAnswers: ["yes, i can", "no, i can't", "no, i cant"], praise: "Супер! Ты потренировал ответ с can." },
+      { id: 4, title: "Дни недели", teacher: "What do you do on Monday?", hint: "Ответь: I play games. / I play the piano. / I sing.", goodAnswers: ["i play", "i sing", "i dance", "i swim"], praise: "Очень хорошо! Ответ полным предложением — это отлично." },
+      { id: 5, title: "Время", teacher: "What time is it?", hint: "Ответь: It is twelve. / It is eleven.", goodAnswers: ["it is", "it's"], praise: "Здорово! Ты ответил как настоящий ученик английского." }
+    ];
+
+    const lessons = [
+      {
+        id: 1, unit: "Модуль 5", title: "Игрушки",
+        subtitle: "toy, ballerina, teddy bear, toy soldier, pink, shelf, box",
+        words: [
+          { en: "toy", ru: "игрушка", tr: "той" },
+          { en: "ballerina", ru: "балерина", tr: "бэ-лэ-РИ-на" },
+          { en: "teddy bear", ru: "плюшевый мишка", tr: "ТЭ-ди бэа" },
+          { en: "toy soldier", ru: "игрушечный солдатик", tr: "той СОУл-джэ" },
+          { en: "pink", ru: "розовый", tr: "пинк" },
+          { en: "shelf", ru: "полка", tr: "шелф" },
+          { en: "box", ru: "коробка", tr: "бокс" }
+        ],
+        phrases: [
+          { en: "What's this?", ru: "Что это?", tr: "уотс зис" },
+          { en: "It's a teddy bear.", ru: "Это плюшевый мишка.", tr: "итс э ТЭ-ди бэа" },
+          { en: "Where is Chuckles?", ru: "Где Чаклз?", tr: "уэа из ЧАКлз" },
+          { en: "He is on the shelf.", ru: "Он на полке.", tr: "хи из он зэ шелф" }
+        ],
+        quiz: [
+          { q: "Как переводится teddy bear?", options: ["Кукла", "Плюшевый мишка", "Коробка"], correct: 1 },
+          { q: "Как по-английски полка?", options: ["shelf", "box", "pink"], correct: 0 },
+          { q: "What's this? — правильный перевод", options: ["Где это?", "Что это?", "Кто это?"], correct: 1 }
+        ]
+      },
+      {
+        id: 2, unit: "Модуль 6", title: "Мои животные",
+        subtitle: "farm, fast, swim, sing, dance, chick, horse, sheep",
+        words: [
+          { en: "farm", ru: "ферма", tr: "фарм" },
+          { en: "fast", ru: "быстро", tr: "фаст" },
+          { en: "swim", ru: "плавать", tr: "свим" },
+          { en: "sing", ru: "петь", tr: "синг" },
+          { en: "dance", ru: "танцевать", tr: "данс" },
+          { en: "chick", ru: "цыплёнок", tr: "чик" },
+          { en: "horse", ru: "лошадь", tr: "хорс" },
+          { en: "sheep", ru: "овца", tr: "шип" }
+        ],
+        phrases: [
+          { en: "Can you swim?", ru: "Ты умеешь плавать?", tr: "кэн ю свим" },
+          { en: "Yes, I can.", ru: "Да, умею.", tr: "йес, ай кэн" },
+          { en: "No, I can't.", ru: "Нет, не умею.", tr: "ноу, ай кант" },
+          { en: "The horse can run fast.", ru: "Лошадь умеет быстро бегать.", tr: "зэ хорс кэн ран фаст" }
+        ],
+        quiz: [
+          { q: "Как по-английски цыплёнок?", options: ["chick", "sheep", "horse"], correct: 0 },
+          { q: "Can you swim? — это", options: ["Ты умеешь плавать?", "Ты любишь плавать?", "Где ты плаваешь?"], correct: 0 },
+          { q: "Как сказать: Нет, не умею?", options: ["Yes, I can.", "No, I can't.", "I am swim."], correct: 1 }
+        ]
+      },
+      {
+        id: 3, unit: "Модуль 7", title: "Свободное время",
+        subtitle: "play, music, Monday, Tuesday, happy, sad, play games",
+        words: [
+          { en: "play games", ru: "играть в игры", tr: "плэй геймз" },
+          { en: "music", ru: "музыка", tr: "МЬЮ-зик" },
+          { en: "Monday", ru: "понедельник", tr: "МАН-дэй" },
+          { en: "Tuesday", ru: "вторник", tr: "ТЬЮЗ-дэй" },
+          { en: "happy", ru: "весёлый", tr: "ХЭ-пи" },
+          { en: "sad", ru: "грустный", tr: "сэд" },
+          { en: "play the piano", ru: "играть на пианино", tr: "плэй зэ пи-Э-ноу" }
+        ],
+        phrases: [
+          { en: "What do you do on Monday?", ru: "Что ты делаешь в понедельник?", tr: "уот ду ю ду он МАН-дэй" },
+          { en: "I play games.", ru: "Я играю в игры.", tr: "ай плэй геймз" },
+          { en: "Are you happy?", ru: "Ты весёлый?", tr: "а ю ХЭ-пи" },
+          { en: "Yes, I am.", ru: "Да.", tr: "йес, ай эм" }
+        ],
+        quiz: [
+          { q: "Как по-английски понедельник?", options: ["Tuesday", "Monday", "Music"], correct: 1 },
+          { q: "I play games. — это", options: ["Я слушаю музыку.", "Я играю в игры.", "Я грущу."], correct: 1 },
+          { q: "happy — это", options: ["Весёлый", "Грустный", "Умный"], correct: 0 }
+        ]
+      },
+      {
+        id: 4, unit: "Модуль 8", title: "День за днём",
+        subtitle: "eleven, twelve, twenty, lunch, dinner, in the morning, at night",
+        words: [
+          { en: "eleven", ru: "одиннадцать", tr: "и-ЛЕ-вэн" },
+          { en: "twelve", ru: "двенадцать", tr: "твэлв" },
+          { en: "twenty", ru: "двадцать", tr: "ТУЭН-ти" },
+          { en: "lunch", ru: "обед", tr: "ланч" },
+          { en: "dinner", ru: "ужин", tr: "ДИ-нэр" },
+          { en: "in the morning", ru: "утром", tr: "ин зэ МОР-нин" },
+          { en: "at night", ru: "ночью", tr: "эт найт" }
+        ],
+        phrases: [
+          { en: "I get up in the morning.", ru: "Я встаю утром.", tr: "ай гет ап ин зэ МОР-нин" },
+          { en: "I have lunch at one.", ru: "Я обедаю в час.", tr: "ай хэв ланч эт уан" },
+          { en: "What time is it?", ru: "Который час?", tr: "уот тайм из ит" },
+          { en: "It is twelve.", ru: "Сейчас двенадцать.", tr: "ит из твэлв" }
+        ],
+        quiz: [
+          { q: "Как по-английски обед?", options: ["dinner", "lunch", "night"], correct: 1 },
+          { q: "What time is it? — это", options: ["Как тебя зовут?", "Что ты делаешь?", "Который час?"], correct: 2 },
+          { q: "in the morning — это", options: ["Ночью", "Утром", "Вечером"], correct: 1 }
+        ]
+      }
+    ];
+
+    const state = {
+      screen: "home",
+      stars: 0,
+      childName: "",
+      lessonId: null,
+      quizIndex: 0,
+      quizSelected: null,
+      quizCorrectCount: 0,
+      tutorIndex: 0,
+      tutorAnswer: "",
+      tutorFeedback: "",
+      tutorWasCorrect: false
+    };
+
+    function speak(text) {
+      if (!("speechSynthesis" in window)) return;
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "en-US";
+      u.rate = 0.9;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(u);
+    }
+
+    function answerMatches(answer, variants) {
+      const normalized = answer.trim().toLowerCase();
+      return variants.some(v => normalized.includes(v));
+    }
+
+    function setScreen(screen) {
+      state.screen = screen;
+      render();
+    }
+
+    function openLesson(id) {
+      state.lessonId = id;
+      state.quizIndex = 0;
+      state.quizSelected = null;
+      state.quizCorrectCount = 0;
+      setScreen("lesson_words");
+    }
+
+    function currentLesson() {
+      return lessons.find(l => l.id === state.lessonId);
+    }
+
+    function renderHome() {
+      return `
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="muted">Мини-приложение</div>
+              <h1 class="title">Английский 3 класс</h1>
+              <div class="subtitle">Игровой тренажёр по учебнику Spotlight, 3 класс, часть 2</div>
+            </div>
+            <div class="big-emoji">✨</div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <div class="muted" style="margin-bottom:6px;">Имя ребёнка</div>
+            <input class="input" placeholder="Например, Рома" value="${escapeHtml(state.childName)}" oninput="state.childName=this.value" />
+          </div>
+
+          <div class="row" style="margin-top:14px; background:#d1fae5; border-radius:18px; padding:14px;">
+            <div>
+              <div class="muted">Награды</div>
+              <div style="font-size:24px; font-weight:800;">${state.stars} ⭐</div>
+            </div>
+            <div class="big-emoji">🏆</div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card" style="margin-bottom:0;">
+            <div style="font-size:24px;">📚</div>
+            <div style="font-weight:800; font-size:18px; margin-top:6px;">Слова</div>
+            <div class="muted" style="margin-top:4px;">Учить с переводом и озвучкой</div>
+          </div>
+          <div class="card" style="margin-bottom:0;">
+            <div style="font-size:24px;">🎮</div>
+            <div style="font-weight:800; font-size:18px; margin-top:6px;">Игры</div>
+            <div class="muted" style="margin-top:4px;">Мини-викторины после урока</div>
+          </div>
+        </div>
+
+        <div class="card soft">
+          <div class="row">
+            <div>
+              <div class="muted">Новый режим</div>
+              <div style="font-size:24px; font-weight:800;">Репетитор</div>
+              <div class="subtitle" style="margin-top:4px;">Вопросы, подсказки и мягкая проверка ответа</div>
+            </div>
+            <button class="button" onclick="startTutor()">Открыть</button>
+          </div>
+        </div>
+
+        ${lessons.map(lesson => `
+          <div class="lesson-card">
+            <div class="row">
+              <div>
+                <div class="muted">${lesson.unit} • Урок ${lesson.id}</div>
+                <div style="font-size:22px; font-weight:800; margin-top:2px;">${lesson.title}</div>
+                <div class="subtitle" style="margin-top:4px;">${lesson.subtitle}</div>
+              </div>
+              <button class="button" onclick="openLesson(${lesson.id})">Открыть</button>
+            </div>
+          </div>
+        `).join("")}
+
+        <div class="footer-note">Сайт можно добавить на экран телефона как приложение.</div>
+      `;
+    }
+
+    function renderLessonWords() {
+      const lesson = currentLesson();
+      return `
+        <button class="button ghost small" onclick="setScreen('home')">← Назад</button>
+        <div class="card">
+          <div style="font-size:28px; font-weight:800;">${lesson.title}</div>
+          <div class="subtitle">${lesson.subtitle}</div>
+          <div class="progress"><div style="width:40%"></div></div>
+
+          <div style="font-size:18px; font-weight:800; margin-bottom:10px;">Слова урока</div>
+          ${lesson.words.map(w => `
+            <div class="item-card soft-gray">
+              <div class="row">
+                <div>
+                  <div class="item-title">${w.en}</div>
+                  <div class="item-sub">${w.ru}</div>
+                  <div class="tiny">[${w.tr}]</div>
+                </div>
+                <button class="button secondary" onclick='speak(${JSON.stringify(w.en)})'>🔊</button>
+              </div>
+            </div>
+          `).join("")}
+
+          <div style="font-size:18px; font-weight:800; margin:16px 0 10px;">Фразы по теме</div>
+          ${lesson.phrases.map(p => `
+            <div class="item-card soft-green">
+              <div class="row">
+                <div>
+                  <div style="font-size:20px; font-weight:800;">${p.en}</div>
+                  <div class="item-sub">${p.ru}</div>
+                  <div class="tiny">[${p.tr}]</div>
+                </div>
+                <button class="button secondary" onclick='speak(${JSON.stringify(p.en)})'>🔊</button>
+              </div>
+            </div>
+          `).join("")}
+
+          <div class="grid2" style="margin-top:14px;">
+            <button class="button secondary" onclick="speakLessonWords()">Слушать слова</button>
+            <button class="button" onclick="setScreen('lesson_quiz')">Играть</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLessonQuiz() {
+      const lesson = currentLesson();
+      const q = lesson.quiz[state.quizIndex];
+      return `
+        <button class="button ghost small" onclick="setScreen('lesson_words')">← Назад</button>
+        <div class="card">
+          <div style="font-size:28px; font-weight:800;">${lesson.title}</div>
+          <div class="progress"><div style="width:75%"></div></div>
+
+          <div class="item-card" style="background:#f5f3ff;">
+            <div class="muted">Вопрос ${state.quizIndex + 1} из ${lesson.quiz.length}</div>
+            <div style="font-size:24px; font-weight:800; line-height:1.25; margin-top:6px;">${q.q}</div>
+          </div>
+
+          ${q.options.map((opt, i) => {
+            let style = "";
+            if (state.quizSelected !== null) {
+              if (i === q.correct) style = "background:#dcfce7;border-color:#86efac;";
+              else if (i === state.quizSelected) style = "background:#fee2e2;border-color:#fca5a5;";
+            }
+            return `<button class="button secondary" style="width:100%;height:auto;padding:16px;text-align:left;justify-content:flex-start;margin-bottom:10px;${style}" onclick="selectQuiz(${i})">${opt}</button>`;
+          }).join("")}
+
+          <button class="button" style="width:100%;margin-top:8px;" ${state.quizSelected === null ? "disabled style='opacity:.5;width:100%;margin-top:8px;'" : ""} onclick="nextQuiz()">Дальше</button>
+        </div>
+      `;
+    }
+
+    function renderLessonDone() {
+      const lesson = currentLesson();
+      return `
+        <button class="button ghost small" onclick="setScreen('home')">← Назад</button>
+        <div class="card center">
+          <div class="big-emoji">🎉</div>
+          <div style="font-size:32px; font-weight:800; margin-top:8px;">Молодец!</div>
+          <div class="subtitle">Урок: ${lesson.title}</div>
+          <div class="subtitle">Правильных ответов: ${state.quizCorrectCount} из ${lesson.quiz.length}</div>
+          <div style="font-size:24px; font-weight:800; margin-top:8px;">+${state.quizCorrectCount} ⭐</div>
+          <button class="button" style="width:100%;margin-top:16px;" onclick="setScreen('home')">К урокам</button>
+        </div>
+      `;
+    }
+
+    function renderTutor() {
+      const item = tutorPrompts[state.tutorIndex];
+      const progress = ((state.tutorIndex + 1) / tutorPrompts.length) * 100;
+      return `
+        <button class="button ghost small" onclick="setScreen('home')">← Назад</button>
+        <div class="card">
+          <div style="font-size:28px; font-weight:800;">Режим репетитора</div>
+          <div class="subtitle">Вопросы как на уроке, подсказки и мягкая проверка ответа</div>
+          <div class="progress"><div style="width:${progress}%"></div></div>
+
+          <div class="item-card" style="background:#f5f3ff;">
+            <div class="muted">Тема: ${item.title}</div>
+            <div style="font-size:28px; font-weight:800; line-height:1.25; margin-top:6px;">${item.teacher}</div>
+            <button class="button secondary" style="margin-top:12px;" onclick='speak(${JSON.stringify(item.teacher)})'>🔊 Слушать</button>
+          </div>
+
+          <div style="font-size:18px; font-weight:800; margin-bottom:8px;">Ответ ребёнка</div>
+          <textarea class="answer" placeholder="Напиши ответ по-английски" oninput="state.tutorAnswer=this.value">${escapeHtml(state.tutorAnswer)}</textarea>
+          <div class="tiny" style="margin-top:6px;">Подсказка: ${item.hint}</div>
+
+          ${state.tutorFeedback ? `<div class="feedback ${state.tutorWasCorrect ? "ok" : "warn"}">${state.tutorFeedback}</div>` : ""}
+
+          <div class="grid2" style="margin-top:14px;">
+            <button class="button secondary" onclick="checkTutor()">Проверить</button>
+            <button class="button" onclick="nextTutor()">Дальше</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function render() {
+      const app = document.getElementById("app");
+      if (state.screen === "home") app.innerHTML = renderHome();
+      if (state.screen === "lesson_words") app.innerHTML = renderLessonWords();
+      if (state.screen === "lesson_quiz") app.innerHTML = renderLessonQuiz();
+      if (state.screen === "lesson_done") app.innerHTML = renderLessonDone();
+      if (state.screen === "tutor") app.innerHTML = renderTutor();
+    }
+
+    function speakLessonWords() {
+      const lesson = currentLesson();
+      lesson.words.forEach((word, index) => {
+        setTimeout(() => speak(word.en), index * 1200);
+      });
+    }
+
+    function selectQuiz(index) {
+      if (state.quizSelected !== null) return;
+      state.quizSelected = index;
+      const lesson = currentLesson();
+      if (index === lesson.quiz[state.quizIndex].correct) state.quizCorrectCount += 1;
+      render();
+    }
+
+    function nextQuiz() {
+      const lesson = currentLesson();
+      if (state.quizIndex + 1 < lesson.quiz.length) {
+        state.quizIndex += 1;
+        state.quizSelected = null;
+        render();
+        return;
+      }
+      state.stars += state.quizCorrectCount;
+      state.screen = "lesson_done";
+      render();
+    }
+
+    function startTutor() {
+      state.tutorIndex = 0;
+      state.tutorAnswer = "";
+      state.tutorFeedback = "";
+      state.tutorWasCorrect = false;
+      setScreen("tutor");
+    }
+
+    function checkTutor() {
+      const item = tutorPrompts[state.tutorIndex];
+      const ok = answerMatches(state.tutorAnswer, item.goodAnswers);
+      state.tutorWasCorrect = ok;
+      state.tutorFeedback = ok ? item.praise : "Попробуй ещё. Подсказка: " + item.hint;
+      render();
+    }
+
+    function nextTutor() {
+      if (state.tutorWasCorrect) state.stars += 1;
+      state.tutorAnswer = "";
+      state.tutorFeedback = "";
+      state.tutorWasCorrect = false;
+      if (state.tutorIndex + 1 < tutorPrompts.length) {
+        state.tutorIndex += 1;
+        render();
+        return;
+      }
+      setScreen("home");
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    render();
+  </script>
+</body>
+</html>
