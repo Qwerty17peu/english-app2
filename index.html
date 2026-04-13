@@ -143,7 +143,9 @@
       { id: 5, title: "Время", teacher: "What time is it?", hint: "Ответь: It is twelve. / It is eleven.", goodAnswers: ["it is", "it's"], praise: "Здорово! Ты ответил как настоящий ученик английского." }
     ];
 
-    const lessons = [{
+     const lessons = [
+
+{
   id: 1,
   unit: "Основы",
   title: "Приветствие",
@@ -154,8 +156,7 @@
     { en: "goodbye", ru: "пока", tr: "гудбай" }
   ],
   phrases: [
-    { en: "Hello! How are you?", ru: "Привет! Как дела?", tr: "хеллоу хау а ю" },
-    { en: "I am fine.", ru: "У меня всё хорошо", tr: "ай эм файн" }
+    { en: "Hello! How are you?", ru: "Привет! Как дела?", tr: "хеллоу хау а ю" }
   ],
   quiz: [
     { q: "hello — это", options: ["пока", "привет", "спасибо"], correct: 1 }
@@ -166,11 +167,17 @@
   id: 2,
   unit: "Основы",
   title: "Цвета",
+  subtitle: "red, blue",
   words: [
     { en: "red", ru: "красный", tr: "рэд" },
     { en: "blue", ru: "синий", tr: "блу" },
-    { en: "green", ru: "зелёный", tr: "грин" },
-    { en: "yellow", ru: "жёлтый", tr: "йеллоу" }
+    { en: "green", ru: "зелёный", tr: "грин" }
+  ],
+  phrases: [
+    { en: "I like red", ru: "Мне нравится красный", tr: "ай лайк ред" }
+  ],
+  quiz: [
+    { q: "red — это", options: ["синий", "красный"], correct: 1 }
   ]
 },
 
@@ -178,17 +185,19 @@
   id: 3,
   unit: "База",
   title: "Цифры",
+  subtitle: "1–10",
   words: [
     { en: "one", ru: "один", tr: "уан" },
     { en: "two", ru: "два", tr: "ту" },
     { en: "three", ru: "три", tr: "сри" },
     { en: "four", ru: "четыре", tr: "фор" },
-    { en: "five", ru: "пять", tr: "файв" },
-    { en: "six", ru: "шесть", tr: "сикс" },
-    { en: "seven", ru: "семь", tr: "сэвэн" },
-    { en: "eight", ru: "восемь", tr: "эйт" },
-    { en: "nine", ru: "девять", tr: "найн" },
-    { en: "ten", ru: "десять", tr: "тэн" }
+    { en: "five", ru: "пять", tr: "файв" }
+  ],
+  phrases: [
+    { en: "I am seven", ru: "Мне семь лет", tr: "ай эм сэвэн" }
+  ],
+  quiz: [
+    { q: "one — это", options: ["один", "два"], correct: 0 }
   ]
 },
 
@@ -196,64 +205,54 @@
   id: 4,
   unit: "База",
   title: "Дни недели",
+  subtitle: "Monday...",
   words: [
     { en: "Monday", ru: "понедельник", tr: "мандэй" },
-    { en: "Tuesday", ru: "вторник", tr: "тьюздэй" },
-    { en: "Wednesday", ru: "среда", tr: "уэнздэй" },
-    { en: "Thursday", ru: "четверг", tr: "сёрздэй" },
-    { en: "Friday", ru: "пятница", tr: "фрайдэй" },
-    { en: "Saturday", ru: "суббота", tr: "сэтэдэй" },
-    { en: "Sunday", ru: "воскресенье", tr: "сандэй" }
+    { en: "Tuesday", ru: "вторник", tr: "тьюздэй" }
+  ],
+  phrases: [
+    { en: "Today is Monday", ru: "Сегодня понедельник", tr: "тудэй из мандэй" }
+  ],
+  quiz: [
+    { q: "Monday — это", options: ["понедельник", "вторник"], correct: 0 }
   ]
 },
 
 {
   id: 5,
-  unit: "База",
-  title: "Времена года",
+  unit: "Мир",
+  title: "Животные",
+  subtitle: "cat, dog",
   words: [
-    { en: "winter", ru: "зима", tr: "винтэр" },
-    { en: "spring", ru: "весна", tr: "спринг" },
-    { en: "summer", ru: "лето", tr: "самэр" },
-    { en: "autumn", ru: "осень", tr: "отэм" }
+    { en: "cat", ru: "кот", tr: "кэт" },
+    { en: "dog", ru: "собака", tr: "дог" }
+  ],
+  phrases: [
+    { en: "I like cats", ru: "Я люблю котов", tr: "ай лайк кэтс" }
+  ],
+  quiz: [
+    { q: "dog — это", options: ["кот", "собака"], correct: 1 }
   ]
 },
 
 {
   id: 6,
   unit: "Мир",
-  title: "Животные",
-  words: [
-    { en: "cat", ru: "кот", tr: "кэт" },
-    { en: "dog", ru: "собака", tr: "дог" },
-    { en: "bird", ru: "птица", tr: "бёрд" }
-  ]
-},
-
-{
-  id: 7,
-  unit: "Мир",
   title: "Еда",
+  subtitle: "apple, milk",
   words: [
     { en: "apple", ru: "яблоко", tr: "эпл" },
-    { en: "milk", ru: "молоко", tr: "милк" },
-    { en: "bread", ru: "хлеб", tr: "брэд" }
-  ]
-},
-
-{
-  id: 8,
-  unit: "Школа",
-  title: "Школа",
-  words: [
-    { en: "book", ru: "книга", tr: "бук" },
-    { en: "pen", ru: "ручка", tr: "пэн" },
-    { en: "teacher", ru: "учитель", tr: "тичер" }
+    { en: "milk", ru: "молоко", tr: "милк" }
+  ],
+  phrases: [
+    { en: "I like apples", ru: "Я люблю яблоки", tr: "ай лайк эплс" }
+  ],
+  quiz: [
+    { q: "apple — это", options: ["яблоко", "молоко"], correct: 0 }
   ]
 }
-    
-          
-    ];
+
+];
 
     const state = {
       screen: "home",
