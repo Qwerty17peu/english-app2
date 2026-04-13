@@ -147,51 +147,30 @@
 
 {
   id: 1,
-  unit: "Основы",
-  title: "Приветствие",
-  subtitle: "hello, hi",
-  words: [
-    { en: "hello", ru: "привет", tr: "хеллоу" },
-    { en: "hi", ru: "привет", tr: "хай" },
-    { en: "goodbye", ru: "пока", tr: "гудбай" }
-  ],
-  phrases: [
-    { en: "Hello! How are you?", ru: "Привет! Как дела?", tr: "хеллоу хау а ю" }
-  ],
-  quiz: [
-    { q: "hello — это", options: ["пока", "привет", "спасибо"], correct: 1 }
-  ]
-},
-
-{
-  id: 2,
-  unit: "Основы",
-  title: "Цвета",
-  subtitle: "red, blue",
-  words: [
-    { en: "red", ru: "красный", tr: "рэд" },
-    { en: "blue", ru: "синий", tr: "блу" },
-    { en: "green", ru: "зелёный", tr: "грин" }
-  ],
-  phrases: [
-    { en: "I like red", ru: "Мне нравится красный", tr: "ай лайк ред" }
-  ],
-  quiz: [
-    { q: "red — это", options: ["синий", "красный"], correct: 1 }
-  ]
-},
-
-{
-  id: 3,
   unit: "База",
-  title: "Цифры",
-  subtitle: "1–10",
+  title: "Цифры 1–20",
+  subtitle: "numbers",
   words: [
     { en: "one", ru: "один", tr: "уан" },
     { en: "two", ru: "два", tr: "ту" },
     { en: "three", ru: "три", tr: "сри" },
     { en: "four", ru: "четыре", tr: "фор" },
-    { en: "five", ru: "пять", tr: "файв" }
+    { en: "five", ru: "пять", tr: "файв" },
+    { en: "six", ru: "шесть", tr: "сикс" },
+    { en: "seven", ru: "семь", tr: "сэвэн" },
+    { en: "eight", ru: "восемь", tr: "эйт" },
+    { en: "nine", ru: "девять", tr: "найн" },
+    { en: "ten", ru: "десять", tr: "тэн" },
+    { en: "eleven", ru: "одиннадцать", tr: "илэвэн" },
+    { en: "twelve", ru: "двенадцать", tr: "твэлв" },
+    { en: "thirteen", ru: "тринадцать", tr: "сёртин" },
+    { en: "fourteen", ru: "четырнадцать", tr: "фортин" },
+    { en: "fifteen", ru: "пятнадцать", tr: "фифтин" },
+    { en: "sixteen", ru: "шестнадцать", tr: "сикстин" },
+    { en: "seventeen", ru: "семнадцать", tr: "сэвентин" },
+    { en: "eighteen", ru: "восемнадцать", tr: "эйтин" },
+    { en: "nineteen", ru: "девятнадцать", tr: "найнтин" },
+    { en: "twenty", ru: "двадцать", tr: "твенти" }
   ],
   phrases: [
     { en: "I am seven", ru: "Мне семь лет", tr: "ай эм сэвэн" }
@@ -202,53 +181,106 @@
 },
 
 {
+  id: 2,
+  unit: "База",
+  title: "Цифры 20–100",
+  subtitle: "numbers",
+  words: [
+    { en: "thirty", ru: "тридцать", tr: "сёрти" },
+    { en: "forty", ru: "сорок", tr: "форти" },
+    { en: "fifty", ru: "пятьдесят", tr: "фифти" },
+    { en: "sixty", ru: "шестьдесят", tr: "сиксти" },
+    { en: "seventy", ru: "семьдесят", tr: "сэвенти" },
+    { en: "eighty", ru: "восемьдесят", tr: "эйти" },
+    { en: "ninety", ru: "девяносто", tr: "найнти" },
+    { en: "one hundred", ru: "сто", tr: "уан хандред" }
+  ],
+  phrases: [
+    { en: "I am ten", ru: "Мне десять", tr: "ай эм тэн" }
+  ],
+  quiz: [
+    { q: "forty — это", options: ["сорок", "пятьдесят"], correct: 0 }
+  ]
+},
+
+{
+  id: 3,
+  unit: "База",
+  title: "Цвета",
+  subtitle: "colors",
+  words: [
+    { en: "red", ru: "красный", tr: "рэд" },
+    { en: "blue", ru: "синий", tr: "блу" },
+    { en: "green", ru: "зелёный", tr: "грин" },
+    { en: "yellow", ru: "жёлтый", tr: "йеллоу" },
+    { en: "black", ru: "чёрный", tr: "блэк" },
+    { en: "white", ru: "белый", tr: "уайт" },
+    { en: "orange", ru: "оранжевый", tr: "ориндж" },
+    { en: "pink", ru: "розовый", tr: "пинк" },
+    { en: "brown", ru: "коричневый", tr: "браун" },
+    { en: "grey", ru: "серый", tr: "грэй" }
+  ],
+  phrases: [
+    { en: "I like red", ru: "Мне нравится красный", tr: "ай лайк ред" }
+  ],
+  quiz: [
+    { q: "blue — это", options: ["синий", "красный"], correct: 0 }
+  ]
+},
+
+{
   id: 4,
   unit: "База",
   title: "Дни недели",
-  subtitle: "Monday...",
   words: [
     { en: "Monday", ru: "понедельник", tr: "мандэй" },
-    { en: "Tuesday", ru: "вторник", tr: "тьюздэй" }
+    { en: "Tuesday", ru: "вторник", tr: "тьюздэй" },
+    { en: "Wednesday", ru: "среда", tr: "уэнздэй" },
+    { en: "Thursday", ru: "четверг", tr: "сёрздэй" },
+    { en: "Friday", ru: "пятница", tr: "фрайдэй" },
+    { en: "Saturday", ru: "суббота", tr: "сэтэдэй" },
+    { en: "Sunday", ru: "воскресенье", tr: "сандэй" }
   ],
   phrases: [
     { en: "Today is Monday", ru: "Сегодня понедельник", tr: "тудэй из мандэй" }
   ],
   quiz: [
-    { q: "Monday — это", options: ["понедельник", "вторник"], correct: 0 }
+    { q: "Sunday — это", options: ["воскресенье", "понедельник"], correct: 0 }
   ]
 },
 
 {
   id: 5,
-  unit: "Мир",
-  title: "Животные",
-  subtitle: "cat, dog",
+  unit: "База",
+  title: "Времена года",
   words: [
-    { en: "cat", ru: "кот", tr: "кэт" },
-    { en: "dog", ru: "собака", tr: "дог" }
+    { en: "winter", ru: "зима", tr: "винтэр" },
+    { en: "spring", ru: "весна", tr: "спринг" },
+    { en: "summer", ru: "лето", tr: "самэр" },
+    { en: "autumn", ru: "осень", tr: "отэм" }
   ],
   phrases: [
-    { en: "I like cats", ru: "Я люблю котов", tr: "ай лайк кэтс" }
+    { en: "I like summer", ru: "Я люблю лето", tr: "ай лайк самэр" }
   ],
   quiz: [
-    { q: "dog — это", options: ["кот", "собака"], correct: 1 }
+    { q: "winter — это", options: ["зима", "лето"], correct: 0 }
   ]
 },
 
 {
   id: 6,
   unit: "Мир",
-  title: "Еда",
-  subtitle: "apple, milk",
+  title: "Животные",
   words: [
-    { en: "apple", ru: "яблоко", tr: "эпл" },
-    { en: "milk", ru: "молоко", tr: "милк" }
+    { en: "cat", ru: "кот", tr: "кэт" },
+    { en: "dog", ru: "собака", tr: "дог" },
+    { en: "bird", ru: "птица", tr: "бёрд" }
   ],
   phrases: [
-    { en: "I like apples", ru: "Я люблю яблоки", tr: "ай лайк эплс" }
+    { en: "I like cats", ru: "Я люблю котов", tr: "ай лайк кэтс" }
   ],
   quiz: [
-    { q: "apple — это", options: ["яблоко", "молоко"], correct: 0 }
+    { q: "dog — это", options: ["кот", "собака"], correct: 1 }
   ]
 }
 
