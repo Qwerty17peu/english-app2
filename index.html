@@ -143,104 +143,116 @@
       { id: 5, title: "Время", teacher: "What time is it?", hint: "Ответь: It is twelve. / It is eleven.", goodAnswers: ["it is", "it's"], praise: "Здорово! Ты ответил как настоящий ученик английского." }
     ];
 
-    const lessons = [
-      {
-        id: 1, unit: "Модуль 5", title: "Игрушки",
-        subtitle: "toy, ballerina, teddy bear, toy soldier, pink, shelf, box",
-        words: [
-          { en: "toy", ru: "игрушка", tr: "той" },
-          { en: "ballerina", ru: "балерина", tr: "бэ-лэ-РИ-на" },
-          { en: "teddy bear", ru: "плюшевый мишка", tr: "ТЭ-ди бэа" },
-          { en: "toy soldier", ru: "игрушечный солдатик", tr: "той СОУл-джэ" },
-          { en: "pink", ru: "розовый", tr: "пинк" },
-          { en: "shelf", ru: "полка", tr: "шелф" },
-          { en: "box", ru: "коробка", tr: "бокс" }
-        ],
-        phrases: [
-          { en: "What's this?", ru: "Что это?", tr: "уотс зис" },
-          { en: "It's a teddy bear.", ru: "Это плюшевый мишка.", tr: "итс э ТЭ-ди бэа" },
-          { en: "Where is Chuckles?", ru: "Где Чаклз?", tr: "уэа из ЧАКлз" },
-          { en: "He is on the shelf.", ru: "Он на полке.", tr: "хи из он зэ шелф" }
-        ],
-        quiz: [
-          { q: "Как переводится teddy bear?", options: ["Кукла", "Плюшевый мишка", "Коробка"], correct: 1 },
-          { q: "Как по-английски полка?", options: ["shelf", "box", "pink"], correct: 0 },
-          { q: "What's this? — правильный перевод", options: ["Где это?", "Что это?", "Кто это?"], correct: 1 }
-        ]
-      },
-      {
-        id: 2, unit: "Модуль 6", title: "Мои животные",
-        subtitle: "farm, fast, swim, sing, dance, chick, horse, sheep",
-        words: [
-          { en: "farm", ru: "ферма", tr: "фарм" },
-          { en: "fast", ru: "быстро", tr: "фаст" },
-          { en: "swim", ru: "плавать", tr: "свим" },
-          { en: "sing", ru: "петь", tr: "синг" },
-          { en: "dance", ru: "танцевать", tr: "данс" },
-          { en: "chick", ru: "цыплёнок", tr: "чик" },
-          { en: "horse", ru: "лошадь", tr: "хорс" },
-          { en: "sheep", ru: "овца", tr: "шип" }
-        ],
-        phrases: [
-          { en: "Can you swim?", ru: "Ты умеешь плавать?", tr: "кэн ю свим" },
-          { en: "Yes, I can.", ru: "Да, умею.", tr: "йес, ай кэн" },
-          { en: "No, I can't.", ru: "Нет, не умею.", tr: "ноу, ай кант" },
-          { en: "The horse can run fast.", ru: "Лошадь умеет быстро бегать.", tr: "зэ хорс кэн ран фаст" }
-        ],
-        quiz: [
-          { q: "Как по-английски цыплёнок?", options: ["chick", "sheep", "horse"], correct: 0 },
-          { q: "Can you swim? — это", options: ["Ты умеешь плавать?", "Ты любишь плавать?", "Где ты плаваешь?"], correct: 0 },
-          { q: "Как сказать: Нет, не умею?", options: ["Yes, I can.", "No, I can't.", "I am swim."], correct: 1 }
-        ]
-      },
-      {
-        id: 3, unit: "Модуль 7", title: "Свободное время",
-        subtitle: "play, music, Monday, Tuesday, happy, sad, play games",
-        words: [
-          { en: "play games", ru: "играть в игры", tr: "плэй геймз" },
-          { en: "music", ru: "музыка", tr: "МЬЮ-зик" },
-          { en: "Monday", ru: "понедельник", tr: "МАН-дэй" },
-          { en: "Tuesday", ru: "вторник", tr: "ТЬЮЗ-дэй" },
-          { en: "happy", ru: "весёлый", tr: "ХЭ-пи" },
-          { en: "sad", ru: "грустный", tr: "сэд" },
-          { en: "play the piano", ru: "играть на пианино", tr: "плэй зэ пи-Э-ноу" }
-        ],
-        phrases: [
-          { en: "What do you do on Monday?", ru: "Что ты делаешь в понедельник?", tr: "уот ду ю ду он МАН-дэй" },
-          { en: "I play games.", ru: "Я играю в игры.", tr: "ай плэй геймз" },
-          { en: "Are you happy?", ru: "Ты весёлый?", tr: "а ю ХЭ-пи" },
-          { en: "Yes, I am.", ru: "Да.", tr: "йес, ай эм" }
-        ],
-        quiz: [
-          { q: "Как по-английски понедельник?", options: ["Tuesday", "Monday", "Music"], correct: 1 },
-          { q: "I play games. — это", options: ["Я слушаю музыку.", "Я играю в игры.", "Я грущу."], correct: 1 },
-          { q: "happy — это", options: ["Весёлый", "Грустный", "Умный"], correct: 0 }
-        ]
-      },
-      {
-        id: 4, unit: "Модуль 8", title: "День за днём",
-        subtitle: "eleven, twelve, twenty, lunch, dinner, in the morning, at night",
-        words: [
-          { en: "eleven", ru: "одиннадцать", tr: "и-ЛЕ-вэн" },
-          { en: "twelve", ru: "двенадцать", tr: "твэлв" },
-          { en: "twenty", ru: "двадцать", tr: "ТУЭН-ти" },
-          { en: "lunch", ru: "обед", tr: "ланч" },
-          { en: "dinner", ru: "ужин", tr: "ДИ-нэр" },
-          { en: "in the morning", ru: "утром", tr: "ин зэ МОР-нин" },
-          { en: "at night", ru: "ночью", tr: "эт найт" }
-        ],
-        phrases: [
-          { en: "I get up in the morning.", ru: "Я встаю утром.", tr: "ай гет ап ин зэ МОР-нин" },
-          { en: "I have lunch at one.", ru: "Я обедаю в час.", tr: "ай хэв ланч эт уан" },
-          { en: "What time is it?", ru: "Который час?", tr: "уот тайм из ит" },
-          { en: "It is twelve.", ru: "Сейчас двенадцать.", tr: "ит из твэлв" }
-        ],
-        quiz: [
-          { q: "Как по-английски обед?", options: ["dinner", "lunch", "night"], correct: 1 },
-          { q: "What time is it? — это", options: ["Как тебя зовут?", "Что ты делаешь?", "Который час?"], correct: 2 },
-          { q: "in the morning — это", options: ["Ночью", "Утром", "Вечером"], correct: 1 }
-        ]
-      }
+    const lessons = [{
+  id: 1,
+  unit: "Основы",
+  title: "Приветствие",
+  subtitle: "hello, hi",
+  words: [
+    { en: "hello", ru: "привет", tr: "хеллоу" },
+    { en: "hi", ru: "привет", tr: "хай" },
+    { en: "goodbye", ru: "пока", tr: "гудбай" }
+  ],
+  phrases: [
+    { en: "Hello! How are you?", ru: "Привет! Как дела?", tr: "хеллоу хау а ю" },
+    { en: "I am fine.", ru: "У меня всё хорошо", tr: "ай эм файн" }
+  ],
+  quiz: [
+    { q: "hello — это", options: ["пока", "привет", "спасибо"], correct: 1 }
+  ]
+},
+
+{
+  id: 2,
+  unit: "Основы",
+  title: "Цвета",
+  words: [
+    { en: "red", ru: "красный", tr: "рэд" },
+    { en: "blue", ru: "синий", tr: "блу" },
+    { en: "green", ru: "зелёный", tr: "грин" },
+    { en: "yellow", ru: "жёлтый", tr: "йеллоу" }
+  ]
+},
+
+{
+  id: 3,
+  unit: "База",
+  title: "Цифры",
+  words: [
+    { en: "one", ru: "один", tr: "уан" },
+    { en: "two", ru: "два", tr: "ту" },
+    { en: "three", ru: "три", tr: "сри" },
+    { en: "four", ru: "четыре", tr: "фор" },
+    { en: "five", ru: "пять", tr: "файв" },
+    { en: "six", ru: "шесть", tr: "сикс" },
+    { en: "seven", ru: "семь", tr: "сэвэн" },
+    { en: "eight", ru: "восемь", tr: "эйт" },
+    { en: "nine", ru: "девять", tr: "найн" },
+    { en: "ten", ru: "десять", tr: "тэн" }
+  ]
+},
+
+{
+  id: 4,
+  unit: "База",
+  title: "Дни недели",
+  words: [
+    { en: "Monday", ru: "понедельник", tr: "мандэй" },
+    { en: "Tuesday", ru: "вторник", tr: "тьюздэй" },
+    { en: "Wednesday", ru: "среда", tr: "уэнздэй" },
+    { en: "Thursday", ru: "четверг", tr: "сёрздэй" },
+    { en: "Friday", ru: "пятница", tr: "фрайдэй" },
+    { en: "Saturday", ru: "суббота", tr: "сэтэдэй" },
+    { en: "Sunday", ru: "воскресенье", tr: "сандэй" }
+  ]
+},
+
+{
+  id: 5,
+  unit: "База",
+  title: "Времена года",
+  words: [
+    { en: "winter", ru: "зима", tr: "винтэр" },
+    { en: "spring", ru: "весна", tr: "спринг" },
+    { en: "summer", ru: "лето", tr: "самэр" },
+    { en: "autumn", ru: "осень", tr: "отэм" }
+  ]
+},
+
+{
+  id: 6,
+  unit: "Мир",
+  title: "Животные",
+  words: [
+    { en: "cat", ru: "кот", tr: "кэт" },
+    { en: "dog", ru: "собака", tr: "дог" },
+    { en: "bird", ru: "птица", tr: "бёрд" }
+  ]
+},
+
+{
+  id: 7,
+  unit: "Мир",
+  title: "Еда",
+  words: [
+    { en: "apple", ru: "яблоко", tr: "эпл" },
+    { en: "milk", ru: "молоко", tr: "милк" },
+    { en: "bread", ru: "хлеб", tr: "брэд" }
+  ]
+},
+
+{
+  id: 8,
+  unit: "Школа",
+  title: "Школа",
+  words: [
+    { en: "book", ru: "книга", tr: "бук" },
+    { en: "pen", ru: "ручка", tr: "пэн" },
+    { en: "teacher", ru: "учитель", tr: "тичер" }
+  ]
+}
+    
+          
     ];
 
     const state = {
